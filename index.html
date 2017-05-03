@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="spaceBlocker" xmlns="http://www.w3.org/1999/html" ng-controller="myCtrl">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
@@ -24,16 +24,16 @@
     <script>document.write('<base href="' + document.location + '" />');</script>
 
 </head>
-<body>
+<body  ng-app="spaceBlocker">
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <button type="button" class="navbar-toggle" data-toggle="scsopecollapse" data-target="#myNavbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" ng-click="showDetails = ! showDetails">SpaceBlocker</a>
+            <a class="navbar-brand" href="#" ng-click="showDetails = ! showDetails">SpaceBlocker </a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
 
@@ -108,9 +108,17 @@
                         <h5>Layout</h5>
                         <div ng-repeat="floor in floorList" style="position:relative">
                             <!--<div style="background-image: url({{floor.floorImage}}); background-size: contain;"></div>-->
-                            <img style="position:absolute;min-height: 450px; height: 25%;width:100%"  ng-src="{{floor.floorImage}}"/>
+                            <!--<img style="position:absolute;min-height: 450px; height: 25%;width:100%"  ng-src="{{floor.floorImage}}"/>-->
+                        </div>
+                        <div>
+                            <ul ng-repeat="desks in deskArray">
+                                <li>desksRequired: {{ desks[1] }}</li>
+                            </ul>
+                            <p>sliderValue: {{ timeSliderValue }}</p>
 
                         </div>
+
+
                     </div>
                 </div>
 
@@ -118,19 +126,16 @@
                     <div ng-controller="graphCtrl">
                         <h5>Space Occupancy Statistics</h5>
                         <nvd3 options="options" data="data" events="events"></nvd3>
-                        <p>sliderValue: {{ sliderValue }}</p>
-                        <p>mouseMoveValue: {{ scrollValue }}</p>
-
-
+                        <p>sliderValue: {{ timeSliderValue }}</p>
                     </div>
                 </div>
             </div>
         </div>
         <div ui-layout-container id="TimeSliderPane">
-            <div  ng-controller="sliderCtrl as slider" >
+            <div  ng-controller="sliderCtrl" >
                 <article>
                     <h5>Time</h5>
-                    <rzslider   rz-slider-model="slider_translate.minValue" rz-slider-high="slider_translate.maxValue" rz-slider-options="slider_translate.options"></rzslider>
+                    <rzslider rz-slider-model="slider_translate.value"  rz-slider-options="slider_translate.options"></rzslider>
                 </article>
 
             </div>

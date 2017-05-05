@@ -108,13 +108,18 @@
                         <h5>Layout</h5>
                         <div ng-repeat="floor in floorList" style="position:relative">
                             <!--<div style="background-image: url({{floor.floorImage}}); background-size: contain;"></div>-->
-                            <!--<img style="position:absolute;min-height: 450px; height: 25%;width:100%"  ng-src="{{floor.floorImage}}"/>-->
+                            <!--<img  style="position:absolute;min-height: 450px; height: 25%;width:100%"  ng-src="{{floor.floorImage}}"/>-->
+
+                            <!--<img id="floor1"  style="position:absolute;min-height: 450px; height: 25%;width:100%"  ng-src="assets/images/Desks5.svg"/>-->
+                            <object class="emb"  data="assets/images/Desks5.svg" style="position:absolute;min-height: 450px; height: 25%;width:100%" type="image/svg+xml"></object>
+
+
                         </div>
                         <div>
-                            <ul ng-repeat="desks in deskArray">
-                                <li>desksRequired: {{ desks[1] }}</li>
-                            </ul>
-                            <p>sliderValue: {{ timeSliderValue }}</p>
+                            <!--<ul ng-repeat="desks in deskArray">-->
+                                <!--<li>desksRequired: {{ desks[1] }}</li>-->
+                            <!--</ul>-->
+                            <!--<p>sliderValue: {{ timeSliderValue }}</p>-->
 
                         </div>
 

@@ -57,12 +57,7 @@ spaceBlocker.controller('graphCtrl', ['dataService', 'timeService', '$scope',fun
 
 	var updateGraph = function(){
 		$scope.data = dataService.getChartData(); 
-
-		d3.select('#chart svg')
-	      .datum(data)
-	      .call(chart);
-		
-		console.log("updating graph", $scope.data);
+		$scope.api.refresh(); console.log($scope.api);
 		$scope.$apply();
 	}
 

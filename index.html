@@ -46,11 +46,11 @@
 
         <div ui-layout id="layout" style="margin-top:50px" ng-cloak>
             
-            <div ui-layout="{ flow : 'row'}">
+            <div ui-layout="{ flow : 'row'}" disableToggle="false">
                 
                 <div ui-layout-container size="85%">
                     
-                    <div ui-layout="{flow : 'column'}" >
+                    <div ui-layout="{flow : 'column'}" disableToggle="false">
 
                         <div class="pane" ui-layout-container id="Table">
                             <ng-include src="'SpaceBlocker/app/templates/tablePane.html'"></ng-include>
@@ -76,7 +76,7 @@
                         <div class="pane" ui-layout-container id="GraphPane">
                             <div ng-controller="graphCtrl">
                                 <h5>Space Occupancy Statistics</h5>
-                                <nvd3 options="options" data="data" events="events"></nvd3>
+                                <nvd3 options="options" data="data" api="api"></nvd3>
                             </div>
                         </div>
 

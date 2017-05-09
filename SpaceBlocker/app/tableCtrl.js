@@ -48,7 +48,7 @@ spaceBlocker.controller('tableCtrl', ['$scope', function ($scope) {
 
 			if(row.year == undefined){
 				console.log("year undefined!");
-				return;
+				continue;
 			}
 
 			// if year doesn't exists, create the new group
@@ -82,7 +82,6 @@ spaceBlocker.controller('tableCtrl', ['$scope', function ($scope) {
 					group.modules.push({ name: row.course, rowIds: [i] });
 			
 			}
-
 		}
 
 		$scope.$apply();

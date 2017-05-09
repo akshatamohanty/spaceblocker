@@ -1,11 +1,15 @@
 <div ng-controller="tableCtrl">
 
     <!-- section for controls -->
-    <section class='controls text-right' style='padding: 10px 10px;'>
+    <section class='controls text-right'>
         <button type="button" ng-click="addRandomItem(row)" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-plus"></i></button>
         <button type="button" id="btnExport" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-download"></i></button>
         <button type="button" id="btnImport" ng-click="importFromCSV(row)" class="btn btn-sm btn-success" ><i class="glyphicon glyphicon-upload"></i></button>
         <input type="file" id="fileImport" name="excel[]" style="visibility: hidden; position: absolute" >  </input>
+    </section>
+
+    <section ng-if='groups.length==0' style='height: 100%; width: 100%; margin: 0 auto;'>
+        <div class="text-center" style='padding-top: 50px'>No data</div>
     </section>
 
     <!-- section for table -->
@@ -15,13 +19,13 @@
 
           <uib-accordion-group is-open="group.isOpen" ng-repeat="group in groups">
             
-            <uib-accordion-heading><i class="glyphicon-plus"></i> Year: {{ group.name }}
+            <uib-accordion-heading><i class="glyphicon-plus"></i> Year: {{ group.name }} [ {{ group.students }} students ]
               <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': group.isOpen, 'glyphicon-chevron-right': !group.isOpen}"></i>
             </uib-accordion-heading>
 
-            <uib-accordion close-others="false">
+            <uib-accordion close-others="true">
                 <uib-accordion-group is-open="mod.isOpen" ng-repeat="module in group.modules">
-                    <uib-accordion-heading><i class="glyphicon-plus"></i> {{ module.name }}
+                    <uib-accordion-heading><i class="glyphicon-plus"></i> {{ module.name }} 
                         <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': mod.isOpen, 'glyphicon-chevron-right': !mod.isOpen}"></i>
                     </uib-accordion-heading>
                     <ul>

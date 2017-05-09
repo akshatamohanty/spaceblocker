@@ -1,4 +1,4 @@
-spaceBlocker.controller('graphCtrl', ['$rootScope','$scope',function($rootScope,$scope) {
+spaceBlocker.controller('graphCtrl', ['dataService', '$scope',function(dataService, $scope) {
 
 	$scope.options = {
 		chart: {
@@ -51,7 +51,8 @@ spaceBlocker.controller('graphCtrl', ['$rootScope','$scope',function($rootScope,
 			}
 		}
 	};
-	$scope.data = data;
+
+	$scope.data = dataService.getChartData();
 	$scope.timeSliderValue = 0;
 	$scope.$on('sliderChanged', function(message, data){
 		$scope.timeSliderValue = data();

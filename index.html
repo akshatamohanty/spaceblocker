@@ -52,11 +52,11 @@
                     
                     <div ui-layout="{flow : 'column'}" >
 
-                        <div ui-layout-container id="TabelPane" >
+                        <div class="pane" ui-layout-container id="Table">
                             <ng-include src="'SpaceBlocker/app/templates/tablePane.html'"></ng-include>
                         </div>
 
-                        <div ui-layout-container id="LayoutPane"  >
+                        <div class="pane" ui-layout-container id="LayoutPane" >
                             <div ng-controller="layoutCtrl">
                                 <h5>Layout</h5>
                                 <div ng-repeat="floor in floorList" style="position:relative">
@@ -73,7 +73,7 @@
                             </div>
                         </div>
 
-                        <div ui-layout-container id="GraphPane">
+                        <div class="pane" ui-layout-container id="GraphPane">
                             <div ng-controller="graphCtrl">
                                 <h5>Space Occupancy Statistics</h5>
                                 <nvd3 options="options" data="data" events="events"></nvd3>
@@ -82,8 +82,10 @@
                         </div>
 
                     </div>
+
                 </div>
-                <div ui-layout-container id="TimeSliderPane">
+
+                <div class="pane" ui-layout-container id="TimeSliderPane">
                     <div  ng-controller="sliderCtrl" >
                         <article>
                             <h5>Time</h5>
@@ -111,7 +113,8 @@
 
         <!-- app -->
         <script src="SpaceBlocker/app/app.js"></script>
-        <script src="SpaceBlocker/app/data.js"></script>
+        <script src="SpaceBlocker/app/dataService.js"></script>
+        <!-- <script src="SpaceBlocker/app/data.js"></script> -->
         <script src="SpaceBlocker/app/graphCtrl.js"></script>
         <script src="SpaceBlocker/app/layoutCtrl.js"></script>
         <script src="SpaceBlocker/app/tableCtrl.js"></script>

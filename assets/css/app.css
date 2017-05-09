@@ -1,3 +1,17 @@
+html, body{
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+.pane{
+	padding: 10px;
+}
+
+a:focus{
+	outline: none;
+}
+
 .ui-layout-column > .ui-splitbar{
 	background: #C9C5C5;
 }

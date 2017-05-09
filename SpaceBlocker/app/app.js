@@ -50,14 +50,18 @@
 
 			var rand=Math.floor(Math.random() * 4);
 			var Course=schedule[rand].course;
+			var Year=schedule[rand].year;
 			var NumStudents = schedule[rand].students.reduce(function(a, b){return a+ b;}, 0);
+			var Date=schedule[rand].date;
 			var ClassTime=schedule[rand].time;
 			var LengthOfClass=schedule[rand].duration;
 			var NumDesks = schedule[rand].desks;
 
 			return {
 				course:Course,
+				year:Year,
 				students:NumStudents,
+				date:Date,
 				time:ClassTime,
 				duration:LengthOfClass,
 				desks:NumDesks
@@ -69,10 +73,12 @@
 		function generateObject(course){
 			return {
 				course:course[0],
-				students:course[1],
-				time:course[2],
-				duration:course[3],
-				desks:course[4]
+				year:course[1],
+				students:course[2],
+				date:course[3],
+				time:course[4],
+				duration:course[5],
+				desks:course[6]
 			}
 
 
@@ -135,8 +141,6 @@
 		$scope.timeSliderValue = data();
 		$scope.totaldesks=0;
 		getdesks();
-
-		console.log($scope.totaldesks);
 		fillSVGElements($scope.totaldesks);
 
 
@@ -195,11 +199,11 @@
 			    if (subdoc)
 			    {
 				    for(i=1;i<=60;i++){
-					    subdoc.getElementById(i).setAttribute("fill", "lime");
+					    subdoc.getElementById(i).setAttribute("fill", "blue");
 				    }
 
 			    	for(i=1;i<=desks;i++){
-					    subdoc.getElementById(i).setAttribute("fill", "red");
+					    subdoc.getElementById(i).setAttribute("fill", "lime");
 				    }
 			    }
 
@@ -292,27 +296,35 @@
 	var schedule=[
 		{
 			course:"AR2225",
+			year:2,
 			students:[10,8,7,0,0,0,0],
+			date:'1/6/2017',
 			time:'9:00:00',
 			duration:120,
 			desks:25
 		},
 		{
 			course:"AR5225",
+			year:4,
 			students:[0,0,0,9,6,0,0],
+			date:'2/6/2017',
 			time:'11:00:00',
 			duration:60,
 			desks:15},
 		{
 			course:"AR6120",
+			year:6,
 			students:[0,0,0,0,0,4,5],
+			date:'3/6/2017',
 			time:'14:00:00',
 			duration:120,
 			desks:9
 		},
 		{
 			course:"AR2120",
+			year:2,
 			students:[10,10,10,0,0,0,0],
+			date:'4/6/2017',
 			time:'16:00:00',
 			duration:90,
 			desks:9

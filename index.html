@@ -51,7 +51,9 @@
                                 <thead>
                                 <tr>
                                     <th st-sort="course">Course</th>
+                                    <th st-sort="year">Year</th>
                                     <th st-sort="students">Students</th>
+                                    <th st-sort="date">ScheduleDate</th>
                                     <th st-sort="time">ScheduleTime</th>
                                     <th st-sort="duration">Duration</th>
                                     <th st-sort="desks">Desks</th>
@@ -64,7 +66,9 @@
                                 <tr ng-repeat="row in displayedCollection">
 
                                     <td>{{row.course}}</td>
+                                    <td>{{row.year}}</td>
                                     <td>{{row.students}}</td>
+                                    <td>{{row.date}}</td>
                                     <td>{{row.time}}</td>
                                     <td>{{row.duration}}</td>
                                     <td>{{row.desks}}</td>
@@ -107,13 +111,8 @@
                     <div ng-controller="layoutCtrl">
                         <h5>Layout</h5>
                         <div ng-repeat="floor in floorList" style="position:relative">
-                            <!--<div style="background-image: url({{floor.floorImage}}); background-size: contain;"></div>-->
-                            <!--<img  style="position:absolute;min-height: 450px; height: 25%;width:100%"  ng-src="{{floor.floorImage}}"/>-->
 
-                            <!--<img id="floor1"  style="position:absolute;min-height: 450px; height: 25%;width:100%"  ng-src="assets/images/Desks5.svg"/>-->
-                            <object class="emb"  data="assets/images/Desks5.svg" style="position:absolute;min-height: 450px; height: 25%;width:100%" type="image/svg+xml"></object>
-
-
+                            <object class="emb"  data="assets/images/SDE3_2ndFloor.svg" style="position:absolute;min-height: 450px; height: 25%;width:100%" type="image/svg+xml"></object>
                         </div>
                         <div>
                             <!--<ul ng-repeat="desks in deskArray">-->
@@ -122,8 +121,6 @@
                             <!--<p>sliderValue: {{ timeSliderValue }}</p>-->
 
                         </div>
-
-
                     </div>
                 </div>
 

@@ -1,8 +1,9 @@
-spaceBlocker.controller('graphCtrl', ['dataService', '$scope',function(dataService, $scope) {
+spaceBlocker.controller('graphCtrl', ['dataService', 'timeService', '$scope',function(dataService, timeService, $scope) {
 
 	$scope.options = {
 		chart: {
 			type: 'stackedAreaChart',
+			width: 450,
 			height: 450,
 			margin : {
 				top: 20,
@@ -10,14 +11,14 @@ spaceBlocker.controller('graphCtrl', ['dataService', '$scope',function(dataServi
 				bottom: 30,
 				left: 40
 			},
-			x: function(d){return d[0];},
+			x: function(d){ return d[0];},
 			y: function(d){return d[1];},
 			useVoronoi: false,
 			clipEdge: true,
 			duration: 100,
 			useInteractiveGuideline: true,
 			xAxis: {
-				showMaxMin: false,
+				showMaxMin: true,
 				tickFormat: function(d) {
 					return d3.time.format('%x')(new Date(d))
 				}
@@ -53,10 +54,18 @@ spaceBlocker.controller('graphCtrl', ['dataService', '$scope',function(dataServi
 	};
 
 	$scope.data = dataService.getChartData();
-	$scope.timeSliderValue = 0;
-	$scope.$on('sliderChanged', function(message, data){
-		$scope.timeSliderValue = data();
 
-	})
+	var updateGraph = function(){
+		$scope.data = dataService.getChartData(); 
+
+		d3.select('#chart svg')
+	      .datum(data)
+	      .call(chart);
+		
+		console.log("updating graph", $scope.data);
+		$scope.$apply();
+	}
+
+	dataService.registerGraphObserverCallback(updateGraph);
 
 }]);

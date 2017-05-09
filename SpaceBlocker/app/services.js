@@ -1,12 +1,10 @@
-spaceBlocker.factory("dataService", function() {
+spaceBlocker.factory("dataService", ['timeService', function(timeService) {
 	
 	var o = {
 		floors : [	{floorImage:"assets/images/Desks5.svg" } ],
 		rows: [],
-		time: new Date(),
-		timeline: [  1025409600000 ,  1028088000000 ,  1030766400000 , 1033358400000 ,  1036040400000 ,1038632400000 ,  1041310800000 , 1043989200000 ,  1046408400000 ,  1049086800000 ,  1051675200000 , 1054353600000 , 1056945600000 , 1059624000000 , 1062302400000 ,  1064894400000 ,  1067576400000 ,1070168400000 ,  1072846800000 ,  1075525200000 ,  1078030800000 ,  1080709200000 , 1083297600000 ,  1085976000000 , 1088568000000 ,  1091246400000 ,  1093924800000 ,  1096516800000 ,  1099195200000 ,  1101790800000 ,  1104469200000 ,  1107147600000 ,  1109566800000 ,1112245200000 , 1114833600000 ,  1117512000000 ,  1120104000000 ,  1122782400000 ,  1125460800000 ,  1128052800000 ,  1130734800000 ,  1133326800000 ,  1136005200000 , 1138683600000 ,  1141102800000 , 1143781200000 ,  1146369600000 , 1149048000000 ,  1151640000000 ,  1154318400000 ,  1156996800000 ,  1159588800000 ,  1162270800000 ,  1164862800000 ,  1167541200000 ,  1170219600000 ,  1172638800000 ,  1175313600000 , 1177905600000 ,  1180584000000 ,  1183176000000 ,  1185854400000 ,  1188532800000 ,  1191124800000 ,  1193803200000 ,  1196398800000 ,  1199077200000 , 1201755600000 , 1204261200000 ,  1206936000000 ,  1209528000000 ,  1212206400000 ,  1214798400000 ,  1217476800000 ,  1220155200000 ,  1222747200000 ,  1225425600000 ,  1228021200000 ,  1230699600000 ,  1233378000000 ,  1235797200000 ,  1238472000000 ,  1241064000000 ,  1243742400000 ,  1246334400000 ,  1249012800000 ,  1251691200000 ,  1254283200000 ,  1256961600000 ,  1259557200000 ,  1262235600000 ,  1264914000000 ,  1267333200000 ,  1270008000000 ,  1272600000000 ,  1275278400000 ,  1277870400000 ,  1280548800000 ,  1283227200000 ,  1285819200000 ,  1288497600000 ,  1291093200000 ,  1293771600000 ,  1296450000000 ,  1298869200000 ,  1301544000000 ,  1304136000000 ,  1306814400000 ,  1309406400000 ,  1312084800000 ,  1314763200000 ,  1317355200000 ,  1320033600000 ,  1322629200000 ,  1325307600000 , 1327986000000 , 1330491600000 ,  1333166400000 ,  1335758400000 ],
 		chartData: [
-				{
+				/*{
 					"key" : "First Year" ,
 					"values" : [ [ 1025409600000 , 10] , [ 1028088000000 , 9] , [ 1030766400000 , 11] , [ 1033358400000 , 12] , [ 1036040400000 , 15] , [ 1038632400000 , 16] , [ 1041310800000 , 9] , [ 1043989200000 , 9] , [ 1046408400000 , 9] , [ 1049086800000 , 11] , [ 1051675200000 , 14] , [ 1054353600000 , 14] , [ 1056945600000 , 13] , [ 1059624000000 , 13] , [ 1062302400000 , 14] , [ 1064894400000 , 14] , [ 1067576400000 , 17] , [ 1070168400000 , 16] , [ 1072846800000 , 16] , [ 1075525200000 , 14] , [ 1078030800000 , 18] , [ 1080709200000 , 11] , [ 1083297600000 , 10] , [ 1085976000000 , 14] , [ 1088568000000 , 18] , [ 1091246400000 , 16] , [ 1093924800000 , 14] , [ 1096516800000 , 14] , [ 1099195200000 , 14] , [ 1101790800000 , 15] , [ 1104469200000 , 13] , [ 1107147600000 , 11] , [ 1109566800000 , 11] , [ 1112245200000 , 11] , [ 1114833600000 , 19] , [ 1117512000000 , 11] , [ 1120104000000 , 11] , [ 1122782400000 , 12] , [ 1125460800000 , 11] , [ 1128052800000 , 13] , [ 1130734800000 , 12] , [ 1133326800000 , 13] , [ 1136005200000 , 16] , [ 1138683600000 , 14] , [ 1141102800000 ,12] , [ 1143781200000 , 16] , [ 1146369600000 , 16] , [ 1149048000000 , 16] , [ 1151640000000 , 13] , [ 1154318400000 , 13] , [ 1156996800000 , 12] , [ 1159588800000 , 17] , [ 1162270800000 , 19] , [ 1164862800000 , 18] , [ 1167541200000 , 12] , [ 1170219600000 , 12] , [ 1172638800000 , 12] , [ 1175313600000 , 14] , [ 1177905600000 , 16] , [ 1180584000000 , 16] , [ 1183176000000 , 18] , [ 1185854400000 , 18] , [ 1188532800000 , 19] , [ 1191124800000 , 14] , [ 1193803200000 , 16] , [ 1196398800000 , 15] , [ 1199077200000 , 17] , [ 1201755600000 , 17] , [ 1204261200000 , 16] , [ 1206936000000 , 19] , [ 1209528000000 , 18] , [ 1212206400000 , 14] , [ 1214798400000 , 15] , [ 1217476800000 , 15] , [ 1220155200000 , 15] , [ 1222747200000 , 13] , [ 1225425600000 , 11] , [ 1228021200000 , 12] , [ 1230699600000 , 15] , [ 1233378000000 , 14] , [ 1235797200000 , 15] , [ 1238472000000 , 13] , [ 1241064000000 , 14] , [ 1243742400000 , 14] , [ 1246334400000 , 16] , [ 1249012800000 , 15] , [ 1251691200000 , 16] , [ 1254283200000 , 18] , [ 1256961600000 , 16] , [ 1259557200000 , 19] , [ 1262235600000 , 12] , [ 1264914000000 , 13] , [ 1267333200000 , 15] , [ 1270008000000 , 16] , [ 1272600000000 , 15] , [ 1275278400000 , 14] , [ 1277870400000 , 15] , [ 1280548800000 , 19] , [ 1283227200000 , 17] , [ 1285819200000 , 19] , [ 1288497600000 , 18] , [ 1291093200000 , 18] , [ 1293771600000 , 12] , [ 1296450000000 , 15] , [ 1298869200000 , 18] , [ 1301544000000 , 12] , [ 1304136000000 , 15] , [ 1306814400000 , 13] , [ 1309406400000 , 13] , [ 1312084800000 , 13] , [ 1314763200000 , 11] , [ 1317355200000 , 11] , [ 1320033600000 , 16] , [ 1322629200000 , 17] , [ 1325307600000 , 10] , [ 1327986000000 , 19] , [ 1330491600000 , 20] , [ 1333166400000 , 19] , [ 1335758400000 , 19]]
 				},
@@ -39,10 +37,38 @@ spaceBlocker.factory("dataService", function() {
 				{
 					"key" : "PhD" ,
 					"values" : [ [ 1025409600000 , 0] , [ 1028088000000 , 1] , [ 1030766400000 , 1] , [ 1033358400000 , 1] , [ 1036040400000 , 1] , [ 1038632400000 , 1] , [ 1041310800000 , 0] , [ 1043989200000 , 0] , [ 1046408400000 , 0] , [ 1049086800000 , 2] , [ 1051675200000 , 2] , [ 1054353600000 , 2] , [ 1056945600000 , 2] , [ 1059624000000 , 2] , [ 1062302400000 , 2] , [ 1064894400000 , 2] , [ 1067576400000 , 2] , [ 1070168400000 , 2] , [ 1072846800000 , 1] , [ 1075525200000 , 1] , [ 1078030800000 , 2] , [ 1080709200000 , 1] , [ 1083297600000 , 1] , [ 1085976000000 , 1] , [ 1088568000000 , 1] , [ 1091246400000 , 1] , [ 1093924800000 , 1] , [ 1096516800000 , 1] , [ 1099195200000 , 1] , [ 1101790800000 , 1] , [ 1104469200000 , 3] , [ 1107147600000 , 3] , [ 1109566800000 , 3] , [ 1112245200000 , 3] , [ 1114833600000 , 3] , [ 1117512000000 , 3] , [ 1120104000000 , 4] , [ 1122782400000 , 4] , [ 1125460800000 , 4] , [ 1128052800000 , 4] , [ 1130734800000 , 4] , [ 1133326800000 , 5] , [ 1136005200000 , 3] , [ 1138683600000 , 3] , [ 1141102800000 , 3] , [ 1143781200000 , 2] , [ 1146369600000 , 2] , [ 1149048000000 , 2] , [ 1151640000000 , 3] , [ 1154318400000 , 3] , [ 1156996800000 , 3] , [ 1159588800000 , 2] , [ 1162270800000 , 2] , [ 1164862800000 , 2] , [ 1167541200000 , 1] , [ 1170219600000 , 1] , [ 1172638800000 , 1] , [ 1175313600000 , 2] , [ 1177905600000 , 2] , [ 1180584000000 , 2] , [ 1183176000000 , 3] , [ 1185854400000 , 3] , [ 1188532800000 , 3] , [ 1191124800000 , 4] , [ 1193803200000 , 4] , [ 1196398800000 , 4] , [ 1199077200000 , 5] , [ 1201755600000 , 5] , [ 1204261200000 , 5] , [ 1206936000000 , 3] , [ 1209528000000 , 3] , [ 1212206400000 , 3] , [ 1214798400000 , 4] , [ 1217476800000 , 4] , [ 1220155200000 , 4] , [ 1222747200000 , 3] , [ 1225425600000 , 3] , [ 1228021200000 , 3] , [ 1230699600000 , 1] , [ 1233378000000 , 1] , [ 1235797200000 , 1] , [ 1238472000000 , 0] , [ 1241064000000 , 0] , [ 1243742400000 ,2] , [ 1246334400000 , 2] , [ 1249012800000 , 2] , [ 1251691200000 , 2] , [ 1254283200000 , 1] , [ 1256961600000 , 1] , [ 1259557200000 , 1] , [ 1262235600000 , 0] , [ 1264914000000 , 0] , [ 1267333200000 , 0] , [ 1270008000000 , 0] , [ 1272600000000 , 0] , [ 1275278400000 , 0] , [ 1277870400000 , 0] , [ 1280548800000 , 0] , [ 1283227200000 , 0] , [ 1285819200000 , 0] , [ 1288497600000 , 1] , [ 1291093200000 , 1] , [ 1293771600000 , 1] , [ 1296450000000 , 0] , [ 1298869200000 , 0] , [ 1301544000000 , 0] , [ 1304136000000 , 0] , [ 1306814400000 , 0] , [ 1309406400000 , 0] , [ 1312084800000 , 0] , [ 1314763200000 , 2] , [ 1317355200000 , 0] , [ 1320033600000 , 0] , [ 1322629200000 , 0] , [ 1325307600000 , 0] , [ 1327986000000 , 0] , [ 1330491600000 , 0] , [ 1333166400000 , 0] , [ 1335758400000 , 0]]
-				}	] // to be replaced, dummy data
+				}*/	] // to be replaced, dummy data
 	}
 
 	var p = {};
+
+	// --------- Observers
+	var observerCallbacks = [];
+	var graphObserverCallbacks = [];
+
+	// call this when you know data has been changed
+	var notifyObservers = function(observers){
+		
+		if(observers == undefined)
+			observers = observerCallbacks;
+		else if(observers == "graph")
+			observers = graphObserverCallbacks;
+
+		angular.forEach(observers, function(callback){
+	    	 callback();
+	    });
+	};
+
+	// register an observer
+	p.registerObserverCallback = function(callback){
+	   observerCallbacks.push(callback);
+	};
+
+	// register an observer
+	p.registerGraphObserverCallback = function(callback){
+	   graphObserverCallbacks.push(callback);
+	};
+
 
 	p.getFloors = function(){
 		return o.floors;
@@ -52,6 +78,150 @@ spaceBlocker.factory("dataService", function() {
 		return o.rows;
 	}
 
+	p.getChartData = function(){
+		return o.chartData;
+	}
+
+	p.setRows = function(rows){
+
+		o.rows = rows;
+
+		var chart = [];
+
+		var lowest = new Date(), highest = new Date();
+		for(var i=0; i<rows.length; i++){
+
+			var row = rows[i];
+
+			if(row == undefined || row.date == undefined || row.time == undefined)
+				continue;
+
+			var date = row.date.split("/");
+			var time = row.time.split(":");
+
+			var newdate = new Date();
+			newdate.setDate(date[0]);
+			newdate.setMonth(date[1]-1);
+			newdate.setYear(date[2]);
+			/*newdate.setHours(time[0]);
+			newdate.setMinutes(time[1]);
+			newdate.setSeconds(time[2]);*/
+
+			if(i==0){
+				highest = newdate; 
+				lowest = newdate;
+			}
+			else{
+				if(newdate > highest)
+					highest = newdate;
+				else if(newdate < lowest)
+					lowest = newdate;
+			}
+
+			row.formattedDate = newdate.getTime();
+
+			// add values for chart
+			if(chart[row.year] == undefined){
+				chart[row.year] = [];
+				chart[row.year][row.formattedDate] = parseInt(row.desks);
+			} 
+			else if(chart[row.year][row.formattedDate] == undefined){
+				chart[row.year][row.formattedDate] = parseInt(row.desks);
+			}
+			else
+				chart[row.year][row.formattedDate] += parseInt(row.desks);
+		}	
+
+
+		timeService.setTimelineRange(highest, lowest);
+		notifyObservers();
+
+		// this needs to be after timeline has been set
+		updateChart(chart);
+
+		return o.rows;
+	}
+
+	var updateChart = function(data){
+		
+		o.chartData = [];
+		var timelineRange = timeService.getTimeline();
+		for(key in data){
+			var obj = { "key": "Year " + key, "values": []};
+			for(var t=0; t<timelineRange.length; t++){
+				var time = timelineRange[t];
+				if(data[key][String(time)] !== undefined){
+					obj.values.push([ time, data[key][time] ]);
+				}
+				else{
+					obj.values.push([ time, 0 ]);
+				}
+			}
+			o.chartData.push(obj);
+		}
+
+		c = o.chartData;
+		notifyObservers("graph");
+
+	}
+
+	return p;
+
+}]);
+
+spaceBlocker.factory("timeService", function() {
+
+	Date.prototype.addDays = function(days) {
+	    var dat = new Date(this.valueOf())
+	    dat.setDate(dat.getDate() + days);
+	    return dat;
+	}
+
+	function getDates(startDate, stopDate) {
+	    var dateArray = new Array();
+	    var currentDate = startDate;
+	    while (currentDate <= stopDate) {
+	        dateArray.push( new Date (currentDate) )
+	        currentDate = currentDate.addDays(1);
+	    }
+	    return dateArray;
+	}
+
+	var o = {
+		time: new Date(),
+		timeline: getDates( new Date(), (new Date()).addDays(10) ).map(function(d){ return d.getTime() })
+	}
+
+	var p = {};
+
+	// --------- Observers
+	var observerCallbacks = [];
+	var sliderObserverCallbacks = [];
+
+	// call this when you know data has been changed
+	var notifyObservers = function(){
+		angular.forEach(observerCallbacks, function(callback){
+	    	 callback();
+	    });
+	};
+
+	var notifySliderObservers = function(){
+		angular.forEach(sliderObserverCallbacks, function(callback){
+	    	 callback();
+	    });
+	};
+
+
+	// register an observer
+	p.registerObserverCallback = function(callback){
+	   observerCallbacks.push(callback);
+	};
+
+	p.registerSliderObserverCallback = function(callback){
+	   sliderObserverCallbacks.push(callback);
+	};
+
+
 	p.getTime = function(){
 		return o.time;
 	}
@@ -60,23 +230,21 @@ spaceBlocker.factory("dataService", function() {
 		return o.timeline;
 	}
 
-	p.getChartData = function(){
-		return o.chartData;
-	}
-
-	p.setRows = function(rows){
-		o.rows = rows;
-		return o.rows;
-	}
-
 	p.setTime = function(time){
 		o.time = time; 
+		notifyObservers();
 		return o.time;
 	}
 
 	p.setTimeline = function(data){
 		o.timeline = data;
+		notifySliderObservers();
 		return o.timeline;
+	}
+
+	p.setTimelineRange = function(highest, lowest){
+		var dateArray = getDates( lowest, highest );
+		p.setTimeline(dateArray.map(function(d){ return d.getTime() }));
 	}
 
 	return p;

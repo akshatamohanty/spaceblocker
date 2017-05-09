@@ -13,32 +13,3 @@ spaceBlocker.controller("myCtrl", function($scope) {
 	};
 
 });
-
-spaceBlocker.controller('sliderCtrl', ['$scope', 'dataService', function ($scope, dataService) {
-
-	//Slider config with custom display function
-	$scope.slider_translate = {
-		value: 0,
-		options: {
-			stepsArray: dataService.getTimeline(),
-			translate: function (value) {
-				var today = new Date(value);
-				return  today.toDateString();
-			}
-
-		}
-	};
-
-/*	var broadcast = function(){
-		$rootScope.$broadcast('sliderChanged', function(){
-			return $scope.slider_translate.value;
-
-		})
-	}
-
-	$scope.$watch('slider_translate.value', broadcast)*/
-
-
-
-}]);
-

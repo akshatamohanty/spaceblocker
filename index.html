@@ -77,7 +77,6 @@
                             <div ng-controller="graphCtrl">
                                 <h5>Space Occupancy Statistics</h5>
                                 <nvd3 options="options" data="data" events="events"></nvd3>
-                                <p>sliderValue: {{ timeSliderValue }}</p>
                             </div>
                         </div>
 
@@ -113,8 +112,8 @@
 
         <!-- app -->
         <script src="SpaceBlocker/app/app.js"></script>
-        <script src="SpaceBlocker/app/dataService.js"></script>
-        <!-- <script src="SpaceBlocker/app/data.js"></script> -->
+        <script src="SpaceBlocker/app/services.js"></script>
+        <script src="SpaceBlocker/app/sliderCtrl.js"></script>
         <script src="SpaceBlocker/app/graphCtrl.js"></script>
         <script src="SpaceBlocker/app/layoutCtrl.js"></script>
         <script src="SpaceBlocker/app/tableCtrl.js"></script>

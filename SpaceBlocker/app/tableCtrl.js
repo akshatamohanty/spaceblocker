@@ -1,11 +1,19 @@
-spaceBlocker.controller('tableCtrl', ['$scope', function ($scope) {
+spaceBlocker.controller('tableCtrl', ['$scope', 'dataService', 'timeService', function ($scope, dataService, timeService) {
 
-	$scope.rowCollection = [];
-	$scope.groups = [];
+	$scope.rowCollection = undefined;
+	$scope.groups = undefined;
 
+	$scope.activeDate = undefined;
+
+	var init = function(){
+		$scope.rowCollection = dataService.getRows();
+		$scope.groups = [];		
+		updateTable();
+		highlight();
+	}
 
 	// function to generate random row - redundant?
-	function generateItemFromSchedule(){
+	var generateItemFromSchedule = function (){
 		var rand=Math.floor(Math.random() * 4);
 		var Course=schedule[rand].course;
 		var NumStudents = schedule[rand].students.reduce(function(a, b){return a+ b;}, 0);
@@ -23,7 +31,7 @@ spaceBlocker.controller('tableCtrl', ['$scope', function ($scope) {
 	}
 
 	// function to convert data read from csv to js-object readable by data
-	function generateObject(course){
+	var generateObject = function(course){
 		return {
 			course:course[0],
 			year:course[1],
@@ -38,7 +46,11 @@ spaceBlocker.controller('tableCtrl', ['$scope', function ($scope) {
 	// function to convert to required data structure once the data is loaded from csv
 	var updateTable = function(){
 		
+		$scope.rowCollection = dataService.getRows();
 		$scope.groups = [];
+
+		if($scope.rowCollection.length == 0)
+			return;
 
 		var years = [];
 
@@ -47,7 +59,6 @@ spaceBlocker.controller('tableCtrl', ['$scope', function ($scope) {
 			var row = $scope.rowCollection[i];
 
 			if(row.year == undefined){
-				console.log("year undefined!");
 				continue;
 			}
 
@@ -87,6 +98,10 @@ spaceBlocker.controller('tableCtrl', ['$scope', function ($scope) {
 		$scope.$apply();
 	}
 
+	var highlight = function(){
+		$scope.activeDate = timeService.getTime()
+	}
+
 	$scope.importFromCSV = function() {
 
 		$(document).on('click', '#btnImport', function(e){
@@ -99,24 +114,33 @@ spaceBlocker.controller('tableCtrl', ['$scope', function ($scope) {
 		
 		// when local file loaded
 		fileInputCSV.addEventListener('change', function (e) {
+
+			var new_rows = [];
 			
 			// parse as CSV
 			var file = e.target.files[0];
 			var csvParser = new SimpleExcel.Parser.CSV();
 			csvParser.setDelimiter(',');
+
 			csvParser.loadFile(file, function () {
+				
 				// draw HTML table based on sheet data
 				var sheet = csvParser.getSheet();
+				
 				// Populate the rowCollection
 				sheet.forEach(function (el, i) {
+					
 					var course=[];
+					
 					el.forEach(function (el, i) {
 						course.push(el.value);
 					});
-					$scope.rowCollection.push(generateObject(course));
+
+					new_rows.push(generateObject(course));
 				});
 
-				updateTable();
+				dataService.setRows(new_rows);
+				//updateTable();
 
 			});
 		});
@@ -135,6 +159,10 @@ spaceBlocker.controller('tableCtrl', ['$scope', function ($scope) {
 		$scope.rowCollection.push(generateItemFromSchedule());
 	};
 
+	$scope.init = init;
+	$scope.highlight = highlight;
+	dataService.registerObserverCallback(init);
+	timeService.registerObserverCallback(highlight);
 
 }]);
 

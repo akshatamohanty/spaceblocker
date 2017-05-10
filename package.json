@@ -1,0 +1,45 @@
+{
+  "name": "spackblocker",
+  "version": "1.0.0",
+  "description": "An app to reserve desks",
+  "main": "app.js",
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-ui-bootstrap": "^2.5.0",
+    "angular-ui-layout": "^1.4.3",
+    "bootstrap": "^3.3.7",
+    "d3": "3.4.5",
+    "jquery": "^3.2.1",
+    "nvd3": "^1.8.5"
+  },
+  "devDependencies": {
+    "bootstrap-loader": "^2.1.0",
+    "bootstrap-sass": "^3.3.7",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.1",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
+    "html-webpack-plugin": "^2.28.0",
+    "node-sass": "^4.5.2",
+    "resolve-url-loader": "^2.0.2",
+    "sass-loader": "^6.0.4",
+    "style-loader": "^0.17.0",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.5.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --progress --colors -d --watch",
+    "prod": "webpack --progress --colors -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshatamohanty/spaceblocker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akshatamohanty/spaceblocker/issues"
+  },
+  "homepage": "https://github.com/akshatamohanty/spaceblocker#readme"
+}
